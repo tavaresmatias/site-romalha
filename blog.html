@@ -75,6 +75,18 @@
             color: var(--primary-color);
             line-height: 1.4;
         }
+
+        .blog-card-title-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-card-title-link:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
         .blog-card p {
             font-size: 14px;
             color: var(--secondary-color);
@@ -172,7 +184,7 @@
                         <div class="blog-card-image">${post.category}</div>
                         <div class="blog-card-content">
                             <span class="blog-card-tag">${post.category}</span>
-                            <h3>${post.title}</h3>
+                            <h3><a href="blog-detalhe.html?id=${post.id}" class="blog-card-title-link">${post.title}</a></h3>
                             <p>${post.summary}</p>
                             <div class="blog-card-meta">
                                 <span>${new Date(post.date).toLocaleDateString('pt-BR')}</span>
