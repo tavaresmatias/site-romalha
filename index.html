@@ -133,17 +133,22 @@
 
     <script src="js/script.js"></script>
     <script>
-        // Carregar últimos 3 artigos
+        // Carregar primeiros 3 artigos
         fetch('data-blog.json')
             .then(res => res.json())
             .then(data => {
                 const container = document.getElementById('artigos-featured');
-                const lastThree = data.blog.slice(-3).reverse();
+                const firstThree = data.blog.slice(0, 3);
 
-                lastThree.forEach(article => {
+                firstThree.forEach(article => {
                     const card = document.createElement('div');
                     card.className = 'artigo-featured-card';
+                    card.style.cursor = 'pointer';
                     card.onclick = () => window.location.href = `blog-detalhe.html?id=${article.id}`;
+
+                    const publishDate = new Date(article.date);
+                    const formattedDate = publishDate.toLocaleDateString('pt-BR');
+
                     card.innerHTML = `
                         <img src="assets/img/romalha-perfil.jpg" alt="${article.title}" class="artigo-featured-image">
                         <div class="artigo-featured-content">
@@ -156,6 +161,11 @@
                             </div>
                             <span class="artigo-featured-category">${article.category}</span>
                             <h3 class="artigo-featured-title">${article.title}</h3>
+                            <p class="artigo-featured-summary">${article.summary}</p>
+                            <div class="artigo-featured-footer">
+                                <span class="artigo-featured-date">${formattedDate}</span>
+                                <a href="blog-detalhe.html?id=${article.id}" class="artigo-featured-link">Ler mais →</a>
+                            </div>
                         </div>
                     `;
                     container.appendChild(card);
