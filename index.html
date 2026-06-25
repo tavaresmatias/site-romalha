@@ -180,26 +180,26 @@
                         <h2>Como podemos ajudar?</h2>
                     </div>
 
-                    <form id="contact-form">
+                    <form id="contact-form" action="https://formspree.io/f/xyzpqzqw" method="POST">
                         <div class="form-row">
                             <div class="form-group">
                                 <label>NOME COMPLETO</label>
-                                <input type="text" placeholder="Seu nome" required>
+                                <input type="text" name="name" placeholder="Seu nome" required>
                             </div>
                             <div class="form-group">
                                 <label>SEU E-MAIL</label>
-                                <input type="email" placeholder="email@exemplo.com" required>
+                                <input type="email" name="email" placeholder="email@exemplo.com" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label>ASSUNTO</label>
-                            <input type="text" placeholder="Assunto da mensagem" required>
+                            <input type="text" name="subject" placeholder="Assunto da mensagem" required>
                         </div>
 
                         <div class="form-group">
                             <label>MENSAGEM</label>
-                            <textarea placeholder="Como podemos ajudar?" rows="6" required></textarea>
+                            <textarea name="message" placeholder="Como podemos ajudar?" rows="6" required></textarea>
                         </div>
 
                         <button type="submit" class="btn-submit">ENVIAR MENSAGEM</button>
