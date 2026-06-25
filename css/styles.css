@@ -31,9 +31,6 @@ body {
     background-color: var(--primary-color);
     color: white;
     padding: 20px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 
 .header .container {
@@ -45,14 +42,9 @@ body {
 
 .logo {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.logo {
-    display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 0;
+    flex: 1;
 }
 
 .logo h1 {
@@ -74,12 +66,14 @@ body {
     width: 1px;
     height: 40px;
     background: linear-gradient(to bottom, rgba(124, 187, 0, 0.3), rgba(124, 187, 0, 0.8), rgba(124, 187, 0, 0.3));
+    margin: 0 20px;
 }
 
 .logo-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 0;
 }
 
 /* WhatsApp Button */
@@ -94,6 +88,7 @@ body {
     align-items: center;
     gap: 8px;
     transition: opacity 0.3s ease;
+    margin-left: auto;
 }
 
 .whatsapp-btn:hover {
