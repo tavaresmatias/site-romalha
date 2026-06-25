@@ -40,6 +40,12 @@ body {
     width: 100%;
 }
 
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
 .logo {
     display: flex;
     align-items: center;
