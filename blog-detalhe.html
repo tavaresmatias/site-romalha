@@ -321,7 +321,11 @@
                 document.getElementById('article-category').textContent = article.category;
                 document.getElementById('article-tag').textContent = article.category;
                 document.getElementById('article-image').textContent = article.category;
-                document.getElementById('article-content').innerHTML = article.content.replace(/\n/g, '<p>').replace(/</p><p>/g, '</p><p>').replace(/^/g, '<p>').replace(/$/g, '</p>');
+
+                // Converter linhas em parágrafos
+                const paragraphs = article.content.split('\n').map(p => p.trim()).filter(p => p);
+                const contentHTML = paragraphs.map(p => `<p>${p}</p>`).join('');
+                document.getElementById('article-content').innerHTML = contentHTML;
             });
     </script>
 </body>
