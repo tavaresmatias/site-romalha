@@ -422,6 +422,18 @@ body {
     color: var(--text-color);
 }
 
+.about-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.3s ease;
+}
+
+.about-link:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
 /* Footer */
 .footer {
     background-color: var(--primary-color);
