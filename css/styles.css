@@ -266,12 +266,6 @@ body {
     display: block;
 }
 
-.about-image::before {
-    content: '📸';
-    font-size: 80px;
-    opacity: 0.3;
-    position: absolute;
-}
 
 .about-text h2 {
     font-size: 32px;
