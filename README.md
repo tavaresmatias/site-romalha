@@ -39,3 +39,5 @@ site-romalha/
 
 - Instagram: [@legalizzare.imoveis](https://www.instagram.com/legalizzare.imoveis/)
 - WhatsApp: [Clique aqui](https://wa.me/)
+
+<!-- Teste de deployment automático - Sat Jun 27 20:50:00 -03 2026 -->
