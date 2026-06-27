@@ -52,12 +52,10 @@
       border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
-      transition: opacity .3s;
     }
 
     .btn:hover { opacity: 0.9; }
 
-    .error { color: #e74c3c; font-size: 14px; margin-top: 10px; display: none; }
     .success { background: #27ae60; color: white; padding: 15px; border-radius: 6px; margin-bottom: 20px; display: none; }
 
     .admin-panel { display: none; }
@@ -134,6 +132,51 @@
 
     .form-row.full { grid-template-columns: 1fr; }
 
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .image-preview {
+      max-width: 300px;
+      max-height: 200px;
+      border-radius: 8px;
+      margin: 10px 0;
+      border: 2px solid #ddd;
+    }
+
+    .file-input-wrapper {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .file-input-wrapper input[type=file] {
+      position: absolute;
+      left: -9999px;
+    }
+
+    .file-input-label {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #7cbb00;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      margin: 10px 0;
+    }
+
+    .file-input-label:hover {
+      opacity: 0.9;
+    }
+
     .btn-primary {
       padding: 12px 30px;
       background: #7cbb00;
@@ -142,6 +185,8 @@
       border-radius: 6px;
       cursor: pointer;
       font-weight: 600;
+      display: inline-block;
+      width: auto;
     }
 
     .btn-danger {
@@ -152,6 +197,8 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 12px;
+      display: inline-block;
+      width: auto;
     }
 
     .article-item {
@@ -160,6 +207,13 @@
       border-radius: 8px;
       margin-bottom: 15px;
       border-left: 4px solid #7cbb00;
+    }
+
+    .photo-section {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 15px 0;
     }
 
     @media (max-width: 768px) {
@@ -178,7 +232,7 @@
     <form id="loginForm">
       <input type="password" id="password" placeholder="Senha" required>
       <button type="submit" class="btn">Acessar</button>
-      <div class="error" id="errorMsg"></div>
+      <div id="errorMsg" style="color: #e74c3c; margin-top: 10px; display: none;"></div>
     </form>
   </div>
 </div>
@@ -204,88 +258,190 @@
     <!-- HERO -->
     <div class="tab-content active" id="heroTab">
       <div class="section">
-        <h2>Hero Section</h2>
+        <h2>🎨 Hero Section</h2>
+        
         <div class="form-row">
-          <div><label>Tagline</label><input type="text" id="hero_tagline"></div>
-          <div><label>CTA Text</label><input type="text" id="hero_ctaText"></div>
+          <div class="form-group">
+            <label>Tagline</label>
+            <input type="text" id="hero_tagline" placeholder="Ex: Romalha Pereira • Direito Imobiliário">
+          </div>
+          <div class="form-group">
+            <label>CTA Text</label>
+            <input type="text" id="hero_ctaText" placeholder="Ex: FALE COM A ROMALHA">
+          </div>
         </div>
+
         <div class="form-row full">
-          <div><label>Título</label><input type="text" id="hero_title"></div>
+          <div class="form-group">
+            <label>Título Principal</label>
+            <input type="text" id="hero_title" placeholder="Ex: Legalização de imóveis com">
+          </div>
         </div>
+
         <div class="form-row full">
-          <div><label>Título Bold</label><input type="text" id="hero_titleBold"></div>
+          <div class="form-group">
+            <label>Título em Destaque (Bold)</label>
+            <input type="text" id="hero_titleBold" placeholder="Ex: expertise e segurança jurídica">
+          </div>
         </div>
+
         <div class="form-row full">
-          <div><label>Subtítulo</label><textarea id="hero_subtitle" style="min-height: 100px;"></textarea></div>
+          <div class="form-group">
+            <label>Subtítulo</label>
+            <textarea id="hero_subtitle" style="min-height: 100px;" placeholder="Descrição completa"></textarea>
+          </div>
         </div>
+
         <div class="form-row full">
-          <div><label>Texto WhatsApp</label><textarea id="hero_whatsappText" style="min-height: 80px;"></textarea></div>
+          <div class="form-group">
+            <label>Texto WhatsApp</label>
+            <textarea id="hero_whatsappText" style="min-height: 80px;" placeholder="Mensagem para WhatsApp"></textarea>
+          </div>
         </div>
-        <button class="btn-primary" onclick="saveSection('hero')">Salvar Hero</button>
+
+        <div class="photo-section">
+          <h3>📸 Foto Principal</h3>
+          <img id="hero_photo_preview" src="" class="image-preview" style="display: none;">
+          <div class="file-input-wrapper">
+            <label for="hero_photo_upload" class="file-input-label">📤 Escolher Foto</label>
+            <input type="file" id="hero_photo_upload" accept="image/*" onchange="uploadImage(this, 'hero_photo_preview', 'hero_photoMain')">
+          </div>
+          <div>
+            <label>URL da Foto</label>
+            <input type="text" id="hero_photoMain" placeholder="assets/img/romalha-perfil.jpg">
+          </div>
+        </div>
+
+        <button class="btn-primary" onclick="saveSection('hero')">💾 Salvar Hero</button>
       </div>
     </div>
 
     <!-- SOBRE -->
     <div class="tab-content" id="sobreTab">
       <div class="section">
-        <h2>Sobre</h2>
+        <h2>👤 Sobre Romalha</h2>
+        
         <div class="form-row">
-          <div><label>Label</label><input type="text" id="sobre_label"></div>
-          <div><label>Título</label><input type="text" id="sobre_title"></div>
+          <div class="form-group">
+            <label>Label</label>
+            <input type="text" id="sobre_label" placeholder="Ex: Sobre Romalha Pereira">
+          </div>
+          <div class="form-group">
+            <label>Título</label>
+            <input type="text" id="sobre_title" placeholder="Ex: Advogada especialista em direito imobiliário">
+          </div>
         </div>
+
         <div class="form-row full">
-          <div><label>Descrição</label><textarea id="sobre_description" style="min-height: 100px;"></textarea></div>
+          <div class="form-group">
+            <label>Descrição</label>
+            <textarea id="sobre_description" style="min-height: 100px;" placeholder="Descrição breve"></textarea>
+          </div>
         </div>
+
         <div class="form-row full">
-          <div><label>Filosofia</label><textarea id="sobre_philosophy" style="min-height: 100px;"></textarea></div>
+          <div class="form-group">
+            <label>Filosofia/Abordagem</label>
+            <textarea id="sobre_philosophy" style="min-height: 100px;" placeholder="Filosofia profissional"></textarea>
+          </div>
         </div>
+
         <div class="form-row full">
-          <div><label>Texto Detalhado</label><textarea id="sobre_detailedText" style="min-height: 150px;"></textarea></div>
+          <div class="form-group">
+            <label>Texto Detalhado</label>
+            <textarea id="sobre_detailedText" style="min-height: 150px;" placeholder="Texto completo com mais detalhes"></textarea>
+          </div>
         </div>
-        <button class="btn-primary" onclick="saveSection('sobre')">Salvar Sobre</button>
+
+        <div class="photo-section">
+          <h3>📸 Fotos</h3>
+          <label>Foto 1:</label>
+          <img id="sobre_photo1_preview" src="" class="image-preview" style="display: none;">
+          <div class="file-input-wrapper">
+            <label for="sobre_photo1_upload" class="file-input-label">📤 Escolher Foto 1</label>
+            <input type="file" id="sobre_photo1_upload" accept="image/*" onchange="uploadImage(this, 'sobre_photo1_preview', 'sobre_photo1')">
+          </div>
+          <input type="text" id="sobre_photo1" placeholder="assets/img/romalha-perfil.jpg">
+        </div>
+
+        <button class="btn-primary" onclick="saveSection('sobre')">💾 Salvar Sobre</button>
       </div>
     </div>
 
     <!-- SERVIÇOS -->
     <div class="tab-content" id="servicosTab">
       <div class="section">
-        <h2>Serviços</h2>
+        <h2>💼 Serviços</h2>
+        
         <div class="form-row full">
-          <div><label>Título da Seção</label><input type="text" id="servicos_title"></div>
+          <div class="form-group">
+            <label>Título da Seção</label>
+            <input type="text" id="servicos_title" placeholder="Ex: Melhore a segurança jurídica">
+          </div>
         </div>
+
         <div id="servicosContainer"></div>
-        <button class="btn-primary" onclick="saveSection('servicos')">Salvar Serviços</button>
+
+        <button class="btn-primary" onclick="saveSection('servicos')">💾 Salvar Serviços</button>
       </div>
     </div>
 
     <!-- CONTATO -->
     <div class="tab-content" id="contatoTab">
       <div class="section">
-        <h2>Contato</h2>
+        <h2>📞 Informações de Contato</h2>
+        
         <div class="form-row">
-          <div><label>E-mail</label><input type="email" id="contato_email"></div>
-          <div><label>Telefone</label><input type="text" id="contato_telefone"></div>
+          <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" id="contato_email" placeholder="legalizzare@gmail.com">
+          </div>
+          <div class="form-group">
+            <label>Telefone</label>
+            <input type="text" id="contato_telefone" placeholder="(24) 98864-8105">
+          </div>
         </div>
+
         <div class="form-row">
-          <div><label>WhatsApp</label><input type="text" id="contato_whatsapp"></div>
-          <div><label>OAB</label><input type="text" id="contato_oab"></div>
+          <div class="form-group">
+            <label>WhatsApp (com código)</label>
+            <input type="text" id="contato_whatsapp" placeholder="5524988648105">
+          </div>
+          <div class="form-group">
+            <label>OAB</label>
+            <input type="text" id="contato_oab" placeholder="OAB/RJ 270.860">
+          </div>
         </div>
+
         <div class="form-row full">
-          <div><label>Endereço</label><textarea id="contato_localizacao" style="min-height: 80px;"></textarea></div>
+          <div class="form-group">
+            <label>Endereço Completo</label>
+            <textarea id="contato_localizacao" style="min-height: 80px;" placeholder="Endereço"></textarea>
+          </div>
         </div>
+
         <div class="form-row">
-          <div><label>Instagram</label><input type="text" id="contato_instagram"></div>
-          <div><label>Site Legalizzare</label><input type="text" id="contato_site_legalizzare"></div>
+          <div class="form-group">
+            <label>Instagram</label>
+            <input type="text" id="contato_instagram" placeholder="https://instagram.com/legalizzare.imoveis">
+          </div>
+          <div class="form-group">
+            <label>Site Legalizzare</label>
+            <input type="text" id="contato_site_legalizzare" placeholder="https://legalizzare.com.br">
+          </div>
         </div>
-        <button class="btn-primary" onclick="saveSection('contato')">Salvar Contato</button>
+
+        <button class="btn-primary" onclick="saveSection('contato')">💾 Salvar Contato</button>
       </div>
     </div>
 
     <!-- BLOG -->
     <div class="tab-content" id="blogTab">
       <div class="section">
-        <h2>Blog</h2>
-        <button class="btn-primary" onclick="newBlogPost()" style="margin-bottom: 20px;">+ Novo Artigo</button>
+        <h2>📝 Gerenciar Blog</h2>
+        
+        <button class="btn-primary" style="margin-bottom: 20px;" onclick="newBlogPost()">+ Novo Artigo</button>
+
         <div id="blogContainer"></div>
       </div>
     </div>
@@ -335,13 +491,37 @@ function switchTab(name) {
   event.target.classList.add('active');
 }
 
+// UPLOAD IMAGE
+async function uploadImage(input, previewId, fieldId) {
+  if (!input.files[0]) return;
+  
+  const formData = new FormData();
+  formData.append('image', input.files[0]);
+  
+  try {
+    const res = await fetch(`${API}/admin/upload`, {
+      method: 'POST',
+      body: formData
+    });
+    
+    const data = await res.json();
+    if (data.success) {
+      document.getElementById(fieldId).value = data.path;
+      const preview = document.getElementById(previewId);
+      preview.src = data.path;
+      preview.style.display = 'block';
+    }
+  } catch (e) {
+    alert('Erro ao fazer upload: ' + e.message);
+  }
+}
+
 // LOAD DATA
 async function loadAllData() {
   try {
     const res = await fetch(`${API}/admin/data`);
     const data = await res.json();
     
-    // Hero
     if (data.hero) {
       document.getElementById('hero_tagline').value = data.hero.tagline || '';
       document.getElementById('hero_title').value = data.hero.title || '';
@@ -349,24 +529,31 @@ async function loadAllData() {
       document.getElementById('hero_subtitle').value = data.hero.subtitle || '';
       document.getElementById('hero_ctaText').value = data.hero.ctaText || '';
       document.getElementById('hero_whatsappText').value = data.hero.whatsappText || '';
+      document.getElementById('hero_photoMain').value = data.hero.photoMain || '';
+      if (data.hero.photoMain) {
+        document.getElementById('hero_photo_preview').src = data.hero.photoMain;
+        document.getElementById('hero_photo_preview').style.display = 'block';
+      }
     }
     
-    // Sobre
     if (data.sobre) {
       document.getElementById('sobre_label').value = data.sobre.label || '';
       document.getElementById('sobre_title').value = data.sobre.title || '';
       document.getElementById('sobre_description').value = data.sobre.description || '';
       document.getElementById('sobre_philosophy').value = data.sobre.philosophy || '';
       document.getElementById('sobre_detailedText').value = data.sobre.detailedText || '';
+      document.getElementById('sobre_photo1').value = data.sobre.photo1 || '';
+      if (data.sobre.photo1) {
+        document.getElementById('sobre_photo1_preview').src = data.sobre.photo1;
+        document.getElementById('sobre_photo1_preview').style.display = 'block';
+      }
     }
     
-    // Serviços
     if (data.servicos) {
       document.getElementById('servicos_title').value = data.servicos.title || '';
       renderServicos(data.servicos.cards || []);
     }
     
-    // Contato
     if (data.contato) {
       document.getElementById('contato_email').value = data.contato.email || '';
       document.getElementById('contato_telefone').value = data.contato.telefone || '';
@@ -377,7 +564,6 @@ async function loadAllData() {
       document.getElementById('contato_site_legalizzare').value = data.contato.site_legalizzare || '';
     }
     
-    // Blog
     if (data.blog) renderBlog(data.blog);
   } catch (e) {
     alert('Erro ao carregar dados: ' + e.message);
@@ -407,6 +593,8 @@ function renderBlog(posts) {
       <input type="text" value="${p.title}" onchange="updateBlog(${i}, 'title', this.value)" placeholder="Título">
       <input type="text" value="${p.category}" onchange="updateBlog(${i}, 'category', this.value)" placeholder="Categoria">
       <input type="date" value="${p.date}" onchange="updateBlog(${i}, 'date', this.value)">
+      <textarea onchange="updateBlog(${i}, 'summary', this.value)" placeholder="Resumo">${p.summary || ''}</textarea>
+      <textarea onchange="updateBlog(${i}, 'content', this.value)" placeholder="Conteúdo">${p.content || ''}</textarea>
       <select onchange="updateBlog(${i}, 'status', this.value)">
         <option value="published" ${p.status === 'published' ? 'selected' : ''}>Publicado</option>
         <option value="draft" ${p.status === 'draft' ? 'selected' : ''}>Rascunho</option>
@@ -430,7 +618,7 @@ async function saveSection(section) {
       subtitle: document.getElementById('hero_subtitle').value,
       ctaText: document.getElementById('hero_ctaText').value,
       whatsappText: document.getElementById('hero_whatsappText').value,
-      photoMain: data.hero?.photoMain || '',
+      photoMain: document.getElementById('hero_photoMain').value,
       photoAccent: ''
     };
   }
@@ -442,7 +630,7 @@ async function saveSection(section) {
       description: document.getElementById('sobre_description').value,
       philosophy: document.getElementById('sobre_philosophy').value,
       detailedText: document.getElementById('sobre_detailedText').value,
-      photo1: data.sobre?.photo1 || '',
+      photo1: document.getElementById('sobre_photo1').value,
       photo2: data.sobre?.photo2 || '',
       photo3: data.sobre?.photo3 || ''
     };
