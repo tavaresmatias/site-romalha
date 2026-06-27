@@ -1,0 +1,18 @@
+{
+  "name": "site-romalha",
+  "version": "2.0.0",
+  "description": "Site profissional de Romalha Pereira com painel de administração",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "multer": "^1.4.5-lts.1"
+  },
+  "keywords": ["romalha", "direito imobiliário", "site", "admin"],
+  "author": "Tiago Tavares",
+  "license": "MIT"
+}

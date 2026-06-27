@@ -1,0 +1,118 @@
+{
+  "hero": {
+    "tagline": "Romalha Pereira • Direito Imobiliário",
+    "title": "Legalização de imóveis com",
+    "titleBold": "expertise e segurança jurídica",
+    "subtitle": "A equipe de Romalha Pereira oferece assessoria jurídica especializada em legalização de imóveis de alta complexidade, protegendo seu patrimônio imobiliário em cada detalhe.",
+    "ctaText": "FALE COM A ROMALHA",
+    "whatsappText": "Olá, Romalha! Gostaria de saber mais sobre seus serviços de legalização de imóveis.",
+    "photoMain": "assets/img/romalha-perfil.jpg",
+    "photoAccent": ""
+  },
+  "sobre": {
+    "label": "Sobre Romalha Pereira",
+    "title": "Advogada especialista em direito imobiliário com vasta experiência",
+    "description": "Romalha Pereira é advogada especialista em direito imobiliário com vasta experiência em legalização de imóveis de alta complexidade.",
+    "philosophy": "Romalha oferece soluções integradas com o objetivo de agilizar, modernizar, uniformizar e desburocratizar o processo de regularização de imóveis. Com uma abordagem inovadora, simplifica processos que antes pareciam complexos.",
+    "detailedText": "Atendendo pessoas físicas, construtoras, incorporadoras, imobiliárias e demais empresas que necessitem de serviços de legalização imobiliária, Romalha é comprometida com a ética e transparência em todas as etapas do trabalho. Sócia fundadora do escritório Legalizzare, especializado em direito imobiliário, Romalha oferece consultoria de alto nível para construtores, investidores, corretoras de imóveis e pessoas físicas em todo o Brasil.",
+    "photo1": "assets/img/romalha-perfil.jpg",
+    "photo2": "",
+    "photo3": ""
+  },
+  "servicos": {
+    "title": "Melhore a segurança jurídica no seu patrimônio imobiliário",
+    "cards": [
+      {
+        "id": 1,
+        "title": "Legalização de Imóveis",
+        "description": "Soluções completas para regularizar imóveis com alta complexidade, agilizando e simplificando todo o processo.",
+        "image": "assets/img/romalha-perfil.jpg",
+        "buttonText": "SAIBA MAIS",
+        "buttonColor": "btn-green",
+        "slug": "legalizacao-imoveis",
+        "detailContent": "A Legalização de Imóveis é o serviço principal de Romalha Pereira. Oferecemos soluções completas para regularizar imóveis com alta complexidade, agilizando e simplificando todo o processo de forma integrada com o cliente."
+      },
+      {
+        "id": 2,
+        "title": "Assessoria Jurídica",
+        "description": "Consultoria especializada em direito imobiliário para proteger seu patrimônio em cada detalhe.",
+        "image": "assets/img/romalha-perfil.jpg",
+        "buttonText": "SAIBA MAIS",
+        "buttonColor": "btn-blue",
+        "slug": "assessoria-juridica",
+        "detailContent": "Nossa Assessoria Jurídica oferece consultoria especializada em direito imobiliário para proteger seu patrimônio em cada detalhe. Analisamos contratos, transações e documentos com rigor e segurança."
+      },
+      {
+        "id": 3,
+        "title": "Regularização Completa",
+        "description": "Desburocratização de processos e análise de risco em transações e contratos imobiliários.",
+        "image": "assets/img/romalha-perfil.jpg",
+        "buttonText": "SAIBA MAIS",
+        "buttonColor": "btn-orange",
+        "slug": "regularizacao-completa",
+        "detailContent": "A Regularização Completa envolve desburocratização de processos, análise de risco em transações e contratos imobiliários, com atendimento personalizado para cada cliente."
+      }
+    ]
+  },
+  "contato": {
+    "email": "legalizzare@gmail.com",
+    "telefone": "(24) 98864-8105",
+    "whatsapp": "5524988648105",
+    "localizacao": "Comercial e Residencial José Esteves - R. Pres. Vargas, 595 - sala 404 - Três Rios, RJ, 25802-200",
+    "oab": "OAB/RJ 270.860",
+    "instagram": "https://instagram.com/legalizzare.imoveis",
+    "site_legalizzare": "https://legalizzare.com.br"
+  },
+  "blog": [
+    {
+      "id": 1,
+      "slug": "importancia-legalizacao-imoveis",
+      "title": "A Importância da Legalização de Imóveis para Proteger seu Patrimônio",
+      "category": "Direito Imobiliário",
+      "date": "2026-06-14",
+      "summary": "Descubra por que a legalização de imóveis é essencial para proteger seu patrimônio e evitar problemas legais no futuro.",
+      "content": "A legalização de imóveis é um processo fundamental para garantir a segurança jurídica do seu patrimônio. Neste artigo, explicamos por que é tão importante regularizar a documentação de um imóvel e como isso pode protegê-lo de futuras complicações legais.",
+      "status": "published"
+    },
+    {
+      "id": 2,
+      "slug": "compra-venda-imoveis-passos",
+      "title": "Compra e Venda de Imóveis: Os Passos Essenciais para uma Transação Segura",
+      "category": "Compra e Venda de Imóveis",
+      "date": "2026-06-09",
+      "summary": "Conheça os passos essenciais para realizar uma compra e venda de imóvel de forma segura e sem riscos.",
+      "content": "Uma transação imobiliária envolve múltiplas etapas e documentações. Neste artigo, Romalha Pereira guia você através dos passos essenciais para garantir uma compra ou venda segura, protegendo seus interesses em cada fase.",
+      "status": "published"
+    },
+    {
+      "id": 3,
+      "slug": "garantias-imobiliarias-opcoes",
+      "title": "Garantias Imobiliárias: Conhecendo suas Opções de Proteção",
+      "category": "Garantias Imobiliárias",
+      "date": "2026-06-04",
+      "summary": "Entenda as diferentes tipos de garantias imobiliárias e qual é a melhor opção para sua situação.",
+      "content": "Existem várias formas de garantir uma transação imobiliária. Conheça as principais opções de garantias imobiliárias e como escolher a melhor solução para proteger seus interesses.",
+      "status": "published"
+    },
+    {
+      "id": 4,
+      "slug": "doacao-imovel-filhos",
+      "title": "Doação de Imóvel para Filhos: Considerações Jurídicas Importantes",
+      "category": "Direito Imobiliário",
+      "date": "2026-05-27",
+      "summary": "Descubra as considerações jurídicas importantes ao realizar uma doação de imóvel para seus filhos.",
+      "content": "A doação de imóvel para filhos é uma decisão importante que requer conhecimento jurídico específico. Este artigo apresenta as considerações legais, implicações fiscais e melhores práticas para executar uma doação de forma segura.",
+      "status": "published"
+    },
+    {
+      "id": 5,
+      "slug": "escritura-publica-imovel",
+      "title": "Escritura Pública de Imóvel: Por que é Essencial e Como Funciona",
+      "category": "Compra e Venda de Imóveis",
+      "date": "2026-05-19",
+      "summary": "Entenda o que é uma escritura pública de imóvel e por que é essencial para proteger sua propriedade.",
+      "content": "A escritura pública é um documento fundamental em qualquer transação imobiliária. Neste artigo, Romalha Pereira explica o que é uma escritura pública, sua importância jurídica e como funciona o processo de sua elaboração.",
+      "status": "published"
+    }
+  ]
+}
