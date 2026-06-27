@@ -8,7 +8,6 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f5f5f5; }
 
-    /* ━━━━━━━━━━━━━ LOGIN ━━━━━━━━━━━━━ */
     .login-screen {
       display: flex;
       align-items: center;
@@ -29,28 +28,17 @@
     .login-box h1 { font-size: 28px; margin-bottom: 10px; color: #333; }
     .login-box p { color: #666; margin-bottom: 30px; font-size: 14px; }
 
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-      color: #333;
-    }
-
-    .form-group input, .form-group textarea {
+    input, textarea, select {
       width: 100%;
       padding: 12px;
       border: 2px solid #ddd;
       border-radius: 6px;
       font-size: 14px;
       font-family: inherit;
-      transition: border-color .3s;
+      margin-bottom: 10px;
     }
 
-    .form-group input:focus, .form-group textarea:focus {
+    input:focus, textarea:focus {
       outline: none;
       border-color: #7cbb00;
     }
@@ -68,16 +56,10 @@
     }
 
     .btn:hover { opacity: 0.9; }
-    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-    .error-msg {
-      color: #e74c3c;
-      font-size: 14px;
-      margin-top: 10px;
-      display: none;
-    }
+    .error { color: #e74c3c; font-size: 14px; margin-top: 10px; display: none; }
+    .success { background: #27ae60; color: white; padding: 15px; border-radius: 6px; margin-bottom: 20px; display: none; }
 
-    /* ━━━━━━━━━━━━━━ ADMIN PANEL ━━━━━━━━━━━━━ */
     .admin-panel { display: none; }
 
     header {
@@ -91,7 +73,7 @@
 
     header h1 { font-size: 24px; color: #333; }
 
-    .btn-secondary {
+    .logout-btn {
       padding: 10px 20px;
       background: #e74c3c;
       color: white;
@@ -101,13 +83,7 @@
       font-weight: 600;
     }
 
-    .btn-secondary:hover { opacity: 0.9; }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 30px 20px;
-    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
 
     .tabs {
       display: flex;
@@ -147,13 +123,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
-    .section h2 {
-      font-size: 22px;
-      margin-bottom: 20px;
-      color: #333;
-      padding-bottom: 10px;
-      border-bottom: 2px solid #f0f0f0;
-    }
+    .section h2 { font-size: 22px; margin-bottom: 20px; color: #333; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
 
     .form-row {
       display: grid;
@@ -164,39 +134,6 @@
 
     .form-row.full { grid-template-columns: 1fr; }
 
-    .field {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .field label {
-      margin-bottom: 8px;
-      font-weight: 600;
-      color: #333;
-      font-size: 14px;
-    }
-
-    .field input, .field textarea, .field select {
-      padding: 12px;
-      border: 2px solid #ddd;
-      border-radius: 6px;
-      font-size: 14px;
-      font-family: inherit;
-      transition: border-color .3s;
-    }
-
-    .field textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    .action-buttons {
-      display: flex;
-      gap: 10px;
-      margin-top: 20px;
-      justify-content: flex-end;
-    }
-
     .btn-primary {
       padding: 12px 30px;
       background: #7cbb00;
@@ -205,21 +142,19 @@
       border-radius: 6px;
       cursor: pointer;
       font-weight: 600;
-      transition: opacity .3s;
     }
 
-    .btn-primary:hover { opacity: 0.9; }
-
-    .success-msg {
-      background: #27ae60;
+    .btn-danger {
+      padding: 8px 16px;
+      background: #e74c3c;
       color: white;
-      padding: 15px;
-      border-radius: 6px;
-      margin-bottom: 20px;
-      display: none;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
     }
 
-    .service-card {
+    .article-item {
       background: #f9f9f9;
       padding: 20px;
       border-radius: 8px;
@@ -227,23 +162,9 @@
       border-left: 4px solid #7cbb00;
     }
 
-    .btn-sm {
-      padding: 8px 16px;
-      background: #2d2d2d;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 12px;
-    }
-
-    .btn-sm.delete { background: #e74c3c; }
-
     @media (max-width: 768px) {
       .form-row { grid-template-columns: 1fr; }
       header { flex-direction: column; gap: 15px; }
-      .tabs { flex-wrap: wrap; }
     }
   </style>
 </head>
@@ -253,27 +174,24 @@
 <div class="login-screen" id="loginScreen">
   <div class="login-box">
     <h1>🔐 Painel Admin</h1>
-    <p>Romalha Pereira — Gerenciador Completo</p>
+    <p>Romalha Pereira</p>
     <form id="loginForm">
-      <div class="form-group">
-        <label>Senha de Acesso</label>
-        <input type="password" id="password" required placeholder="Digite a senha">
-      </div>
-      <button type="submit" class="btn">Acessar Painel</button>
-      <div class="error-msg" id="errorMsg"></div>
+      <input type="password" id="password" placeholder="Senha" required>
+      <button type="submit" class="btn">Acessar</button>
+      <div class="error" id="errorMsg"></div>
     </form>
   </div>
 </div>
 
-<!-- ADMIN PANEL -->
+<!-- ADMIN -->
 <div class="admin-panel" id="adminPanel">
   <header>
-    <h1>🔐 Painel de Controle - Romalha Pereira</h1>
-    <button class="btn-secondary" onclick="logout()">Sair</button>
+    <h1>📊 Painel de Controle</h1>
+    <button class="logout-btn" onclick="logout()">Sair</button>
   </header>
 
   <div class="container">
-    <div class="success-msg" id="successMsg">✓ Alterações salvas com sucesso!</div>
+    <div class="success" id="successMsg">✓ Alterações salvas com sucesso!</div>
 
     <div class="tabs">
       <button class="tab-btn active" onclick="switchTab('hero')">Hero</button>
@@ -283,166 +201,90 @@
       <button class="tab-btn" onclick="switchTab('blog')">Blog</button>
     </div>
 
-    <!-- HERO TAB -->
+    <!-- HERO -->
     <div class="tab-content active" id="heroTab">
       <div class="section">
         <h2>Hero Section</h2>
         <div class="form-row">
-          <div class="field">
-            <label>Tagline</label>
-            <input type="text" id="hero-tagline" placeholder="Ex: Romalha Pereira • Direito Imobiliário">
-          </div>
-          <div class="field">
-            <label>CTA Text</label>
-            <input type="text" id="hero-ctaText" placeholder="Ex: FALE COM A ROMALHA">
-          </div>
+          <div><label>Tagline</label><input type="text" id="hero_tagline"></div>
+          <div><label>CTA Text</label><input type="text" id="hero_ctaText"></div>
         </div>
         <div class="form-row full">
-          <div class="field">
-            <label>Título (Normal)</label>
-            <input type="text" id="hero-title" placeholder="Ex: Legalização de imóveis com">
-          </div>
+          <div><label>Título</label><input type="text" id="hero_title"></div>
         </div>
         <div class="form-row full">
-          <div class="field">
-            <label>Título (Destaque - Bold)</label>
-            <input type="text" id="hero-titleBold" placeholder="Ex: expertise e segurança jurídica">
-          </div>
+          <div><label>Título Bold</label><input type="text" id="hero_titleBold"></div>
         </div>
         <div class="form-row full">
-          <div class="field">
-            <label>Subtítulo</label>
-            <textarea id="hero-subtitle" placeholder="Descrição completa"></textarea>
-          </div>
+          <div><label>Subtítulo</label><textarea id="hero_subtitle" style="min-height: 100px;"></textarea></div>
         </div>
         <div class="form-row full">
-          <div class="field">
-            <label>Texto WhatsApp</label>
-            <textarea id="hero-whatsappText" placeholder="Mensagem para WhatsApp"></textarea>
-          </div>
+          <div><label>Texto WhatsApp</label><textarea id="hero_whatsappText" style="min-height: 80px;"></textarea></div>
         </div>
-        <div class="form-row">
-          <div class="field">
-            <label>Foto Principal</label>
-            <input type="text" id="hero-photoMain" placeholder="Ex: assets/img/romalha-perfil.jpg">
-          </div>
-          <div class="field">
-            <label>Upload Foto</label>
-            <input type="file" id="hero-photo-upload" accept="image/*">
-            <small>Clique para fazer upload de uma imagem</small>
-          </div>
-        </div>
-        <div class="action-buttons">
-          <button class="btn-primary" onclick="saveHero()">Salvar Hero</button>
-        </div>
+        <button class="btn-primary" onclick="saveSection('hero')">Salvar Hero</button>
       </div>
     </div>
 
-    <!-- SOBRE TAB -->
+    <!-- SOBRE -->
     <div class="tab-content" id="sobreTab">
       <div class="section">
-        <h2>Seção Sobre</h2>
+        <h2>Sobre</h2>
         <div class="form-row">
-          <div class="field">
-            <label>Label</label>
-            <input type="text" id="sobre-label" placeholder="Ex: Sobre Romalha Pereira">
-          </div>
-          <div class="field">
-            <label>Título</label>
-            <input type="text" id="sobre-title">
-          </div>
+          <div><label>Label</label><input type="text" id="sobre_label"></div>
+          <div><label>Título</label><input type="text" id="sobre_title"></div>
         </div>
         <div class="form-row full">
-          <div class="field">
-            <label>Descrição</label>
-            <textarea id="sobre-description"></textarea>
-          </div>
+          <div><label>Descrição</label><textarea id="sobre_description" style="min-height: 100px;"></textarea></div>
         </div>
         <div class="form-row full">
-          <div class="field">
-            <label>Filosofia/Abordagem</label>
-            <textarea id="sobre-philosophy"></textarea>
-          </div>
+          <div><label>Filosofia</label><textarea id="sobre_philosophy" style="min-height: 100px;"></textarea></div>
         </div>
         <div class="form-row full">
-          <div class="field">
-            <label>Texto Detalhado</label>
-            <textarea id="sobre-detailedText"></textarea>
-          </div>
+          <div><label>Texto Detalhado</label><textarea id="sobre_detailedText" style="min-height: 150px;"></textarea></div>
         </div>
-        <div class="action-buttons">
-          <button class="btn-primary" onclick="saveSobre()">Salvar Sobre</button>
-        </div>
+        <button class="btn-primary" onclick="saveSection('sobre')">Salvar Sobre</button>
       </div>
     </div>
 
-    <!-- SERVIÇOS TAB -->
+    <!-- SERVIÇOS -->
     <div class="tab-content" id="servicosTab">
       <div class="section">
-        <h2>Gerenciar Serviços</h2>
+        <h2>Serviços</h2>
         <div class="form-row full">
-          <div class="field">
-            <label>Título da Seção</label>
-            <input type="text" id="servicos-title" placeholder="Ex: Melhore a segurança jurídica no seu patrimônio">
-          </div>
+          <div><label>Título da Seção</label><input type="text" id="servicos_title"></div>
         </div>
         <div id="servicosContainer"></div>
-        <div class="action-buttons">
-          <button class="btn-primary" onclick="saveServicos()">Salvar Serviços</button>
-        </div>
+        <button class="btn-primary" onclick="saveSection('servicos')">Salvar Serviços</button>
       </div>
     </div>
 
-    <!-- CONTATO TAB -->
+    <!-- CONTATO -->
     <div class="tab-content" id="contatoTab">
       <div class="section">
-        <h2>Informações de Contato</h2>
+        <h2>Contato</h2>
         <div class="form-row">
-          <div class="field">
-            <label>E-mail</label>
-            <input type="email" id="contato-email">
-          </div>
-          <div class="field">
-            <label>Telefone</label>
-            <input type="text" id="contato-telefone">
-          </div>
+          <div><label>E-mail</label><input type="email" id="contato_email"></div>
+          <div><label>Telefone</label><input type="text" id="contato_telefone"></div>
         </div>
         <div class="form-row">
-          <div class="field">
-            <label>WhatsApp (com código)</label>
-            <input type="text" id="contato-whatsapp" placeholder="Ex: 5524988648105">
-          </div>
-          <div class="field">
-            <label>OAB</label>
-            <input type="text" id="contato-oab" placeholder="Ex: OAB/RJ 270.860">
-          </div>
+          <div><label>WhatsApp</label><input type="text" id="contato_whatsapp"></div>
+          <div><label>OAB</label><input type="text" id="contato_oab"></div>
         </div>
         <div class="form-row full">
-          <div class="field">
-            <label>Endereço Completo</label>
-            <textarea id="contato-localizacao"></textarea>
-          </div>
+          <div><label>Endereço</label><textarea id="contato_localizacao" style="min-height: 80px;"></textarea></div>
         </div>
         <div class="form-row">
-          <div class="field">
-            <label>Instagram</label>
-            <input type="text" id="contato-instagram" placeholder="https://instagram.com/...">
-          </div>
-          <div class="field">
-            <label>Site Legalizzare</label>
-            <input type="text" id="contato-site_legalizzare" placeholder="https://...">
-          </div>
+          <div><label>Instagram</label><input type="text" id="contato_instagram"></div>
+          <div><label>Site Legalizzare</label><input type="text" id="contato_site_legalizzare"></div>
         </div>
-        <div class="action-buttons">
-          <button class="btn-primary" onclick="saveContato()">Salvar Contato</button>
-        </div>
+        <button class="btn-primary" onclick="saveSection('contato')">Salvar Contato</button>
       </div>
     </div>
 
-    <!-- BLOG TAB -->
+    <!-- BLOG -->
     <div class="tab-content" id="blogTab">
       <div class="section">
-        <h2>Gerenciar Blog</h2>
+        <h2>Blog</h2>
         <button class="btn-primary" onclick="newBlogPost()" style="margin-bottom: 20px;">+ Novo Artigo</button>
         <div id="blogContainer"></div>
       </div>
@@ -452,24 +294,21 @@
 </div>
 
 <script>
-const API_URL = '/api';
-const ADMIN_PASSWORD = 'aurora2026';
+const API = '/api';
 
 // LOGIN
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const password = document.getElementById('password').value;
+  const pwd = document.getElementById('password').value;
   
   try {
-    const res = await fetch(`${API_URL}/login`, {
+    const res = await fetch(`${API}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password })
+      body: JSON.stringify({ password: pwd })
     });
     
-    const data = await res.json();
-    
-    if (data.success) {
+    if (res.ok) {
       document.getElementById('loginScreen').style.display = 'none';
       document.getElementById('adminPanel').style.display = 'block';
       loadAllData();
@@ -478,245 +317,167 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
       document.getElementById('errorMsg').style.display = 'block';
     }
   } catch (e) {
-    console.error('Erro ao fazer login:', e);
+    alert('Erro: ' + e.message);
   }
 });
 
 // LOGOUT
 function logout() {
-  fetch(`${API_URL}/logout`, { method: 'POST' }).then(() => {
-    document.getElementById('loginScreen').style.display = 'flex';
-    document.getElementById('adminPanel').style.display = 'none';
-    document.getElementById('password').value = '';
-  });
+  fetch(`${API}/logout`, { method: 'POST' });
+  location.reload();
 }
 
-// TAB SWITCHING
-function switchTab(tabName) {
+// SWITCH TAB
+function switchTab(name) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById(tabName + 'Tab').classList.add('active');
+  document.getElementById(name + 'Tab').classList.add('active');
   event.target.classList.add('active');
 }
 
-// LOAD ALL DATA
+// LOAD DATA
 async function loadAllData() {
   try {
-    const res = await fetch(`${API_URL}/admin/data`);
+    const res = await fetch(`${API}/admin/data`);
     const data = await res.json();
     
     // Hero
     if (data.hero) {
-      document.getElementById('hero-tagline').value = data.hero.tagline || '';
-      document.getElementById('hero-title').value = data.hero.title || '';
-      document.getElementById('hero-titleBold').value = data.hero.titleBold || '';
-      document.getElementById('hero-subtitle').value = data.hero.subtitle || '';
-      document.getElementById('hero-ctaText').value = data.hero.ctaText || '';
-      document.getElementById('hero-whatsappText').value = data.hero.whatsappText || '';
-      document.getElementById('hero-photoMain').value = data.hero.photoMain || '';
+      document.getElementById('hero_tagline').value = data.hero.tagline || '';
+      document.getElementById('hero_title').value = data.hero.title || '';
+      document.getElementById('hero_titleBold').value = data.hero.titleBold || '';
+      document.getElementById('hero_subtitle').value = data.hero.subtitle || '';
+      document.getElementById('hero_ctaText').value = data.hero.ctaText || '';
+      document.getElementById('hero_whatsappText').value = data.hero.whatsappText || '';
     }
     
     // Sobre
     if (data.sobre) {
-      document.getElementById('sobre-label').value = data.sobre.label || '';
-      document.getElementById('sobre-title').value = data.sobre.title || '';
-      document.getElementById('sobre-description').value = data.sobre.description || '';
-      document.getElementById('sobre-philosophy').value = data.sobre.philosophy || '';
-      document.getElementById('sobre-detailedText').value = data.sobre.detailedText || '';
+      document.getElementById('sobre_label').value = data.sobre.label || '';
+      document.getElementById('sobre_title').value = data.sobre.title || '';
+      document.getElementById('sobre_description').value = data.sobre.description || '';
+      document.getElementById('sobre_philosophy').value = data.sobre.philosophy || '';
+      document.getElementById('sobre_detailedText').value = data.sobre.detailedText || '';
     }
     
     // Serviços
     if (data.servicos) {
-      document.getElementById('servicos-title').value = data.servicos.title || '';
+      document.getElementById('servicos_title').value = data.servicos.title || '';
       renderServicos(data.servicos.cards || []);
     }
     
     // Contato
     if (data.contato) {
-      document.getElementById('contato-email').value = data.contato.email || '';
-      document.getElementById('contato-telefone').value = data.contato.telefone || '';
-      document.getElementById('contato-whatsapp').value = data.contato.whatsapp || '';
-      document.getElementById('contato-localizacao').value = data.contato.localizacao || '';
-      document.getElementById('contato-oab').value = data.contato.oab || '';
-      document.getElementById('contato-instagram').value = data.contato.instagram || '';
-      document.getElementById('contato-site_legalizzare').value = data.contato.site_legalizzare || '';
+      document.getElementById('contato_email').value = data.contato.email || '';
+      document.getElementById('contato_telefone').value = data.contato.telefone || '';
+      document.getElementById('contato_whatsapp').value = data.contato.whatsapp || '';
+      document.getElementById('contato_localizacao').value = data.contato.localizacao || '';
+      document.getElementById('contato_oab').value = data.contato.oab || '';
+      document.getElementById('contato_instagram').value = data.contato.instagram || '';
+      document.getElementById('contato_site_legalizzare').value = data.contato.site_legalizzare || '';
     }
     
     // Blog
-    if (data.blog) {
-      renderBlog(data.blog);
-    }
-    
+    if (data.blog) renderBlog(data.blog);
   } catch (e) {
-    console.error('Erro ao carregar dados:', e);
+    alert('Erro ao carregar dados: ' + e.message);
   }
 }
 
 // RENDER SERVIÇOS
 function renderServicos(servicos) {
-  const container = document.getElementById('servicosContainer');
-  container.innerHTML = '';
-  
-  servicos.forEach((s, idx) => {
-    const card = document.createElement('div');
-    card.className = 'service-card';
-    card.innerHTML = `
+  const html = servicos.map((s, i) => `
+    <div class="article-item">
       <h3>${s.title}</h3>
-      <div class="form-row">
-        <div class="field">
-          <label>Título</label>
-          <input type="text" value="${s.title}" onchange="updateService(${idx}, 'title', this.value)">
-        </div>
-        <div class="field">
-          <label>Slug</label>
-          <input type="text" value="${s.slug || ''}" onchange="updateService(${idx}, 'slug', this.value)">
-        </div>
-      </div>
-      <div class="form-row full">
-        <div class="field">
-          <label>Descrição</label>
-          <textarea onchange="updateService(${idx}, 'description', this.value)">${s.description || ''}</textarea>
-        </div>
-      </div>
-      <div class="form-row full">
-        <div class="field">
-          <label>Conteúdo Detalhado</label>
-          <textarea onchange="updateService(${idx}, 'detailContent', this.value)">${s.detailContent || ''}</textarea>
-        </div>
-      </div>
-      <div class="action-buttons">
-        <button class="btn-sm delete" onclick="deleteService(${idx})">Deletar</button>
-      </div>
-    `;
-    container.appendChild(card);
-  });
+      <input type="text" value="${s.title}" onchange="updateServico(${i}, 'title', this.value)" placeholder="Título">
+      <textarea onchange="updateServico(${i}, 'description', this.value)" placeholder="Descrição">${s.description || ''}</textarea>
+      <textarea onchange="updateServico(${i}, 'detailContent', this.value)" placeholder="Conteúdo Detalhado">${s.detailContent || ''}</textarea>
+      <button class="btn-danger" onclick="deleteServico(${i})">Deletar</button>
+    </div>
+  `).join('');
+  
+  document.getElementById('servicosContainer').innerHTML = html;
 }
 
 // RENDER BLOG
 function renderBlog(posts) {
-  const container = document.getElementById('blogContainer');
-  container.innerHTML = '';
-  
-  posts.forEach((p, idx) => {
-    const card = document.createElement('div');
-    card.className = 'service-card';
-    card.innerHTML = `
+  const html = posts.map((p, i) => `
+    <div class="article-item">
       <h3>${p.title}</h3>
-      <div class="form-row">
-        <div class="field">
-          <label>Título</label>
-          <input type="text" value="${p.title}" onchange="updateBlog(${idx}, 'title', this.value)">
-        </div>
-        <div class="field">
-          <label>Categoria</label>
-          <input type="text" value="${p.category}" onchange="updateBlog(${idx}, 'category', this.value)">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="field">
-          <label>Data</label>
-          <input type="date" value="${p.date}" onchange="updateBlog(${idx}, 'date', this.value)">
-        </div>
-        <div class="field">
-          <label>Status</label>
-          <select onchange="updateBlog(${idx}, 'status', this.value)">
-            <option value="published" ${p.status === 'published' ? 'selected' : ''}>Publicado</option>
-            <option value="draft" ${p.status === 'draft' ? 'selected' : ''}>Rascunho</option>
-          </select>
-        </div>
-      </div>
-      <div class="action-buttons">
-        <button class="btn-sm delete" onclick="deleteBlog(${idx})">Deletar</button>
-      </div>
-    `;
-    container.appendChild(card);
+      <input type="text" value="${p.title}" onchange="updateBlog(${i}, 'title', this.value)" placeholder="Título">
+      <input type="text" value="${p.category}" onchange="updateBlog(${i}, 'category', this.value)" placeholder="Categoria">
+      <input type="date" value="${p.date}" onchange="updateBlog(${i}, 'date', this.value)">
+      <select onchange="updateBlog(${i}, 'status', this.value)">
+        <option value="published" ${p.status === 'published' ? 'selected' : ''}>Publicado</option>
+        <option value="draft" ${p.status === 'draft' ? 'selected' : ''}>Rascunho</option>
+      </select>
+      <button class="btn-danger" onclick="deleteBlog(${i})">Deletar</button>
+    </div>
+  `).join('');
+  
+  document.getElementById('blogContainer').innerHTML = html;
+}
+
+// SAVE SECTION
+async function saveSection(section) {
+  const data = await fetch(`${API}/admin/data`).then(r => r.json());
+  
+  if (section === 'hero') {
+    data.hero = {
+      tagline: document.getElementById('hero_tagline').value,
+      title: document.getElementById('hero_title').value,
+      titleBold: document.getElementById('hero_titleBold').value,
+      subtitle: document.getElementById('hero_subtitle').value,
+      ctaText: document.getElementById('hero_ctaText').value,
+      whatsappText: document.getElementById('hero_whatsappText').value,
+      photoMain: data.hero?.photoMain || '',
+      photoAccent: ''
+    };
+  }
+  
+  if (section === 'sobre') {
+    data.sobre = {
+      label: document.getElementById('sobre_label').value,
+      title: document.getElementById('sobre_title').value,
+      description: document.getElementById('sobre_description').value,
+      philosophy: document.getElementById('sobre_philosophy').value,
+      detailedText: document.getElementById('sobre_detailedText').value,
+      photo1: data.sobre?.photo1 || '',
+      photo2: data.sobre?.photo2 || '',
+      photo3: data.sobre?.photo3 || ''
+    };
+  }
+  
+  if (section === 'contato') {
+    data.contato = {
+      email: document.getElementById('contato_email').value,
+      telefone: document.getElementById('contato_telefone').value,
+      whatsapp: document.getElementById('contato_whatsapp').value,
+      localizacao: document.getElementById('contato_localizacao').value,
+      oab: document.getElementById('contato_oab').value,
+      instagram: document.getElementById('contato_instagram').value,
+      site_legalizzare: document.getElementById('contato_site_legalizzare').value
+    };
+  }
+  
+  await fetch(`${API}/admin/data`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
   });
+  
+  document.getElementById('successMsg').style.display = 'block';
+  setTimeout(() => document.getElementById('successMsg').style.display = 'none', 3000);
 }
 
-// SAVE FUNCTIONS
-async function saveHero() {
-  const data = await fetch(`${API_URL}/admin/data`).then(r => r.json());
-  data.hero = {
-    tagline: document.getElementById('hero-tagline').value,
-    title: document.getElementById('hero-title').value,
-    titleBold: document.getElementById('hero-titleBold').value,
-    subtitle: document.getElementById('hero-subtitle').value,
-    ctaText: document.getElementById('hero-ctaText').value,
-    whatsappText: document.getElementById('hero-whatsappText').value,
-    photoMain: document.getElementById('hero-photoMain').value,
-    photoAccent: ''
-  };
-  await saveData(data);
-}
+// PLACEHOLDER FUNCTIONS
+function updateServico(i, field, val) {}
+function deleteServico(i) {}
+function updateBlog(i, field, val) {}
+function deleteBlog(i) {}
+function newBlogPost() { alert('Usar aba Blog para gerenciar'); }
 
-async function saveSobre() {
-  const data = await fetch(`${API_URL}/admin/data`).then(r => r.json());
-  data.sobre = {
-    label: document.getElementById('sobre-label').value,
-    title: document.getElementById('sobre-title').value,
-    description: document.getElementById('sobre-description').value,
-    philosophy: document.getElementById('sobre-philosophy').value,
-    detailedText: document.getElementById('sobre-detailedText').value,
-    photo1: data.sobre?.photo1 || '',
-    photo2: data.sobre?.photo2 || '',
-    photo3: data.sobre?.photo3 || ''
-  };
-  await saveData(data);
-}
-
-async function saveServicos() {
-  const data = await fetch(`${API_URL}/admin/data`).then(r => r.json());
-  data.servicos.title = document.getElementById('servicos-title').value;
-  await saveData(data);
-}
-
-async function saveContato() {
-  const data = await fetch(`${API_URL}/admin/data`).then(r => r.json());
-  data.contato = {
-    email: document.getElementById('contato-email').value,
-    telefone: document.getElementById('contato-telefone').value,
-    whatsapp: document.getElementById('contato-whatsapp').value,
-    localizacao: document.getElementById('contato-localizacao').value,
-    oab: document.getElementById('contato-oab').value,
-    instagram: document.getElementById('contato-instagram').value,
-    site_legalizzare: document.getElementById('contato-site_legalizzare').value
-  };
-  await saveData(data);
-}
-
-async function saveData(data) {
-  try {
-    const res = await fetch(`${API_URL}/admin/data`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    
-    if (res.ok) {
-      document.getElementById('successMsg').style.display = 'block';
-      setTimeout(() => document.getElementById('successMsg').style.display = 'none', 3000);
-    }
-  } catch (e) {
-    console.error('Erro ao salvar:', e);
-    alert('Erro ao salvar dados');
-  }
-}
-
-// Funções placeholder
-function updateService(idx, field, value) {}
-function deleteService(idx) {}
-function updateBlog(idx, field, value) {}
-function deleteBlog(idx) {}
-function newBlogPost() {}
-
-// Load on init
-document.addEventListener('DOMContentLoaded', () => {
-  if (localStorage.getItem('adminAuth') === 'true') {
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('adminPanel').style.display = 'block';
-    loadAllData();
-  }
-});
+loadAllData();
 </script>
 
 </body>
