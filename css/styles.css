@@ -402,6 +402,10 @@ body {
 }
 
 
+.about-label {
+    color: var(--secondary-color) !important;
+}
+
 .about-text h2 {
     font-size: 32px;
     font-weight: 300;

@@ -175,30 +175,31 @@
 
     <script>
         // Carregar dados do blog
-        fetch('data-blog.json')
+        fetch('/api/blog?limit=100')
             .then(res => res.json())
             .then(data => {
                 const postsContainer = document.getElementById('blog-posts');
+                const posts = data.posts || [];
 
-                data.blog.forEach(post => {
+                posts.forEach(post => {
                     const card = document.createElement('div');
                     card.className = 'blog-card';
                     card.innerHTML = `
                         <div class="blog-card-image">${post.category}</div>
                         <div class="blog-card-content">
                             <span class="blog-card-tag">${post.category}</span>
-                            <h3><a href="blog-detalhe.html?id=${post.id}" class="blog-card-title-link">${post.title}</a></h3>
+                            <h3><a href="/blog/${post.slug}" class="blog-card-title-link">${post.title}</a></h3>
                             <p>${post.summary}</p>
                             <div class="blog-card-meta">
                                 <span>${new Date(post.date).toLocaleDateString('pt-BR')}</span>
-                                <a href="blog-detalhe.html?id=${post.id}" class="blog-card-link">Ler mais →</a>
+                                <a href="/blog/${post.slug}" class="blog-card-link">Ler mais →</a>
                             </div>
                         </div>
                     `;
                     postsContainer.appendChild(card);
                 });
 
-                if (data.blog.length === 0) {
+                if (posts.length === 0) {
                     document.getElementById('end-message').style.display = 'block';
                 }
             });

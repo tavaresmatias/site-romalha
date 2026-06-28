@@ -41,6 +41,7 @@
                     <img src="assets/img/romalha-perfil.jpg" alt="Romalha Pereira - Advogada especialista em direito imobiliário" class="profile-image" loading="lazy">
                 </div>
                 <div class="about-text">
+                    <span class="contact-label about-label">Sobre Romalha Pereira</span>
                     <h2>ROMALHA PEREIRA</h2>
                     <p class="about-intro">Advogada especialista em direito imobiliário com vasta experiência em legalização de imóveis de alta complexidade.</p>
                     <p>Romalha Pereira oferece soluções integradas com o objetivo de agilizar, modernizar, uniformizar e desburocratizar o processo de regularização de imóveis. Com uma abordagem inovadora, simplifica processos que antes pareciam complexos.</p>
@@ -223,25 +224,26 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="loader.js"></script>
     <script>
-        // Carregar primeiros 3 artigos
-        fetch('data-blog.json')
+        // Carregar primeiros 3 artigos publicados
+        fetch('/api/blog?limit=3')
             .then(res => res.json())
             .then(data => {
                 const container = document.getElementById('artigos-featured');
-                const firstThree = data.blog.slice(0, 3);
+                const firstThree = data.posts || [];
 
                 firstThree.forEach(article => {
                     const card = document.createElement('div');
                     card.className = 'artigo-featured-card';
                     card.style.cursor = 'pointer';
-                    card.onclick = () => window.location.href = `blog-detalhe.html?id=${article.id}`;
+                    card.onclick = () => window.location.href = `/blog/${article.slug}`;
 
                     const publishDate = new Date(article.date);
                     const formattedDate = publishDate.toLocaleDateString('pt-BR');
 
                     card.innerHTML = `
-                        <img src="assets/img/romalha-perfil.jpg" alt="${article.title}" class="artigo-featured-image">
+                        <img src="${article.image || 'assets/img/romalha-perfil.jpg'}" alt="${article.title}" class="artigo-featured-image">
                         <div class="artigo-featured-content">
                             <div class="artigo-featured-header">
                                 <div class="artigo-featured-author-img"></div>
@@ -255,7 +257,7 @@
                             <p class="artigo-featured-summary">${article.summary}</p>
                             <div class="artigo-featured-footer">
                                 <span class="artigo-featured-date">${formattedDate}</span>
-                                <a href="blog-detalhe.html?id=${article.id}" class="artigo-featured-link">Ler mais →</a>
+                                <a href="/blog/${article.slug}" class="artigo-featured-link">Ler mais →</a>
                             </div>
                         </div>
                     `;

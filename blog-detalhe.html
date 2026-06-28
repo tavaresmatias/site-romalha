@@ -302,33 +302,39 @@
     </footer>
 
     <script>
-        // Pegar ID do artigo da URL
+        // Pegar slug do artigo a partir da URL (/blog/:slug)
         const urlParams = new URLSearchParams(window.location.search);
-        const articleId = parseInt(urlParams.get('id'));
+        const slugFromQuery = urlParams.get('slug');
+        const slugFromPath = window.location.pathname.replace(/^\/blog\//, '').replace(/\/$/, '');
+        const articleSlug = slugFromQuery || slugFromPath;
 
         // Carregar dados
-        fetch('data-blog.json')
-            .then(res => res.json())
-            .then(data => {
-                const article = data.blog.find(a => a.id === articleId);
-
-                if (!article) {
-                    document.getElementById('article-content').innerHTML = '<p>Artigo não encontrado</p>';
-                    return;
-                }
-
+        fetch(`/api/blog/${articleSlug}`)
+            .then(res => {
+                if (!res.ok) throw new Error('Artigo não encontrado');
+                return res.json();
+            })
+            .then(article => {
                 // Preencher dados
                 document.title = `${article.title} - Romalha Pereira`;
                 document.getElementById('article-title').textContent = article.title;
                 document.getElementById('article-date').textContent = new Date(article.date).toLocaleDateString('pt-BR');
                 document.getElementById('article-category').textContent = article.category;
                 document.getElementById('article-tag').textContent = article.category;
-                document.getElementById('article-image').textContent = article.category;
+                if (article.image) {
+                    document.getElementById('article-image').style.backgroundImage = `url('${article.image}')`;
+                    document.getElementById('article-image').textContent = '';
+                } else {
+                    document.getElementById('article-image').textContent = article.category;
+                }
 
                 // Converter linhas em parágrafos
                 const paragraphs = article.content.split('\n').map(p => p.trim()).filter(p => p);
                 const contentHTML = paragraphs.map(p => `<p>${p}</p>`).join('');
                 document.getElementById('article-content').innerHTML = contentHTML;
+            })
+            .catch(() => {
+                document.getElementById('article-content').innerHTML = '<p>Artigo não encontrado</p>';
             });
     </script>
 </body>
